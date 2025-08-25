@@ -10,6 +10,11 @@ async function querySkillsIssue(github, context, assignee, label) {
   const repoOwner = context.repo.owner;
   const repoName = context.repo.repo;
 
+  console.log(repoOwner);
+  console.log(repoName);
+  console.log(assignee);
+  console.log(label);
+
   const query = `query($owner: String!, $repo: String!, $assignee: String!, $label: String!) {
     repository(owner: $owner, name: $repo) {
      issues(
