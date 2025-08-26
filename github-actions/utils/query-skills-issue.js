@@ -55,6 +55,9 @@ async function querySkillsIssue(github, context, assignee, label) {
 
   try {
     const response = await github.graphql(query, variables);
+    
+    console.log(issueNum);
+    console.log(issueId);
 
     // Extract the list of project items associated with the issue
     const issueNode = response.repository.issues.nodes[0];  
@@ -63,6 +66,7 @@ async function querySkillsIssue(github, context, assignee, label) {
     const issueId = issueNode.projectItems.nodes[0]?.id;  
 
     const fieldValues = response.repository.issues.nodes[0].projectItems.nodes[0].fieldValues.nodes;
+    console.log(fieldValues);
     const statusField = fieldValues.find(node => node.name && node.optionId);
     const statusName = statusField?.name;
     const statusId = statusField?.optionId;
